@@ -1,0 +1,2207 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selera Nusantara - Kuliner Indonesia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #fff7f7 0%, #fde8e8 100%);
+        min-height: 100vh;
+        color: #374151;
+      }
+
+      nav {
+        background-color: #e11d48 !important;
+      }
+
+      .food-card {
+        transition: all 0.3s ease;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #ffffff;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .food-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .food-image {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .food-card:hover .food-image {
+        transform: scale(1.05);
+      }
+
+      .category-btn {
+        transition: all 0.3s ease;
+      }
+
+      .category-btn.bg-red-600 {
+        background-color: #e11d48 !important;
+      }
+
+      .category-btn.bg-red-600:hover {
+        background-color: #be123c !important;
+      }
+
+      .category-btn.bg-gray-200:hover {
+        background-color: #fee2e2 !important;
+        color: #be123c !important;
+      }
+
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+          url("https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/59a8236e-e3df-4cfc-9862-6cfbc78174fb.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      button.bg-red-600 {
+        background-color: #e11d48 !important;
+      }
+
+      button.bg-red-600:hover {
+        background-color: #be123c !important;
+      }
+
+      span.text-red-600 {
+        color: #e11d48 !important;
+      }
+
+      section.bg-red-600 {
+        background-color: #e11d48 !important;
+      }
+
+      .food-card h3,
+      .food-card p {
+        color: #374151;
+      }
+
+      .food-card .text-gray-600 {
+        color: #6b7280 !important;
+      }
+
+      .bg-gray-50 {
+        background-color: #fff1f2 !important;
+      }
+
+      @media (max-width: 768px) {
+        .hero-section {
+          height: 60vh;
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="bg-red-600 text-white sticky top-0 z-50 shadow-lg">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-utensils text-2xl"></i>
+            <span class="text-xl font-bold">Selera Lokal</span>
+          </div>
+
+          <div class="hidden md:flex space-x-8">
+            <a href="#beranda" class="hover:text-red-200 transition-colors"
+              >Beranda</a
+            >
+            <a href="#menu" class="hover:text-red-200 transition-colors"
+              >Menu</a
+            >
+            <a href="#kategori" class="hover:text-red-200 transition-colors"
+              >Kategori</a
+            >
+            <a href="#tentang" class="hover:text-red-200 transition-colors"
+              >Tentang</a
+            >
+            <a href="#tentang" class="hover:text-red-200 transition-colors"
+              >Kontak</a
+            >
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <button
+              class="bg-white text-red-600 px-4 py-2 rounded-full font-medium hover:bg-red-50 transition-colors"
+            >
+              <i class="fas fa-shopping-cart mr-2"></i>Pesan
+            </button>
+            <button id="menu-toggle" class="md:hidden text-white">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 text-center"
+        >
+          <a
+            href="#beranda"
+            class="block py-2 px-4 hover:bg-red-700 rounded transition-colors"
+            >Beranda</a
+          >
+          <a
+            href="#menu"
+            class="block py-2 px-4 hover:bg-red-700 rounded transition-colors"
+            >Menu</a
+          >
+          <a
+            href="#kategori"
+            class="block py-2 px-4 hover:bg-red-700 rounded transition-colors"
+            >Kategori</a
+          >
+          <a
+            href="#tentang"
+            class="block py-2 px-4 hover:bg-red-700 rounded transition-colors"
+            >Tentang</a
+          >
+          <a
+            href="#tentang"
+            class="block py-2 px-4 hover:bg-red-700 rounded transition-colors"
+            >Kontak</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <section
+      class="hero-section h-96 flex items-center justify-center text-white"
+      id="beranda"
+    >
+      <div class="text-center max-w-4xl mx-auto px-4">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">
+          Jelajahi Kelezatan Lokal
+        </h1>
+        <p class="text-xl md:text-2xl mb-8">
+          Temukan ragam kuliner Indonesia yang menggugah selera dari berbagai
+          daerah
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition-colors"
+          >
+            Lihat Menu
+          </button>
+          <button
+            class="bg-white hover:bg-gray-100 text-red-600 px-8 py-3 rounded-full font-semibold transition-colors"
+          >
+            Pesan Sekarang
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 bg-white" id="kategori">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">
+          Kategori Makanan
+        </h2>
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <button
+            class="category-btn bg-red-600 text-white px-6 py-2 rounded-full font-medium"
+          >
+            Semua
+          </button>
+          <button
+            class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium"
+            data-category="makanan-berat"
+          >
+            Makanan Berat
+          </button>
+          <button
+            class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium"
+            data-category="camilan"
+          >
+            Camilan
+          </button>
+          <button
+            class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium"
+            data-category="minuman"
+          >
+            Minuman
+          </button>
+          <button
+            class="category-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-full font-medium"
+            data-category="dessert"
+          >
+            Dessert
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 bg-gray-50" id="menu">
+      <div class="container mx-auto px-4">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+        >
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5eab3443-95b6-45b7-989c-4b197af3fde4.png"
+                alt="Nasi Goreng Spesial"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Nasi Goreng Spesial
+                </h3>
+                <span class="text-red-600 font-bold">Rp 25.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Nasi goreng dengan ayam, udang, telur, dan sayuran segar
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.8 (120)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/62ef4818-a280-48c5-911c-6e7a8280f833.png"
+                alt="Sate Ayam Madura"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Sate Ayam Madura
+                </h3>
+                <span class="text-red-600 font-bold">Rp 30.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Sate ayam dengan bumbu kacang khas Madura, lengkap dengan
+                lontong
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.9 (95)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f82104c1-ea2b-4404-9072-ff6198cfb269.png"
+                alt="Gado-gado"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Gado-gado</h3>
+                <span class="text-red-600 font-bold">Rp 22.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Campuran sayuran segar dengan bumbu kacang khas Indonesia
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.7 (88)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ee913d54-4a6f-47ff-9c40-f8481747b4c0.png"
+                alt="Rendang Padang"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Rendang Padang</h3>
+                <span class="text-red-600 font-bold">Rp 35.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Daging sapi dimasak dengan bumbu rempah khas Minangkabau
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">5.0 (150)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6c4742a7-c8ee-41e5-ba02-b501d7f7764c.png"
+                alt="Bakso Urat"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Bakso Urat</h3>
+                <span class="text-red-600 font-bold">Rp 20.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Bakso daging sapi dengan isian urat, disajikan dengan mie dan
+                kuah kaldu
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.6 (110)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/31/08/71/3108711ab05f86c2a8010e308425a308.jpg"
+                alt="Gule Kambing"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Gule Kambing</h3>
+                <span class="text-red-600 font-bold">Rp 45.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Daging kambing empuk dimasak dengan kuah santan kaya rempah
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.7 (75)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/a7/5f/14/a75f14b2364b7c56aa318c7437513050.jpg"
+                alt="Sop Buntut"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Sop Buntut</h3>
+                <span class="text-red-600 font-bold">Rp 40.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Sop iga sapi dengan wortel dan kentang yang segar
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.9 (105)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/80/3c/bc/803cbcabba9e4f43b52ea660ac726b90.jpg"
+                alt="Ayam Bakar Taliwang"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Ayam Bakar Taliwang
+                </h3>
+                <span class="text-red-600 font-bold">Rp 30.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Ayam bakar dengan bumbu pedas khas Lombok, disajikan dengan
+                plecing kangkung
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.8 (90)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/45/1c/3a/451c3a2537616f5d5d06750972b5458e.jpg"
+                alt="Nasi Padang"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Nasi Padang</h3>
+                <span class="text-red-600 font-bold">Rp 30.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Nasi dengan lauk pilihan khas Minang, sambal, dan sayur nangka
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.9 (140)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="makanan-berat">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/f7/8c/9c/f78c9c64009e3c538cb9d7ac7455d5dc.jpg"
+                alt="Soto Ayam"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Soto Ayam</h3>
+                <span class="text-red-600 font-bold">Rp 20.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Soto ayam bening dengan soun, tauge, dan perkedel
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.7 (100)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-card" data-category="camilan">
+            <div class="overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c0667ffa-6523-454a-9582-8fe49b772484.png"
+                alt="Pempek Palembang"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Pempek Palembang
+                </h3>
+                <span class="text-red-600 font-bold">Rp 28.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Pempek kapal selam dengan cuko khas Palembang yang segar
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.8 (75)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="camilan">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/57/ce/20/57ce205a5da770ea2d1cc8eefa715c60.jpg"
+                alt="Tahu Gejrot"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Tahu Gejrot</h3>
+                <span class="text-red-600 font-bold">Rp 15.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Tahu sumedang dengan kuah bumbu pedas, manis, dan asam
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.6 (60)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="camilan">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/ee/45/97/ee4597f1f15c034c7c9b7c4aba68137f.jpg"
+                alt="Cilok"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Cilok</h3>
+                <span class="text-red-600 font-bold">Rp 12.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Aci dicolok dengan bumbu kacang dan saus pedas
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.7 (80)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="camilan">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/cf/2f/c9/cf2fc9599eac49fa54a1d6758b30657a.jpg"
+                alt="Cireng"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Cireng</h3>
+                <span class="text-red-600 font-bold">Rp 10.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Aci digoreng dengan bumbu rujak pedas manis
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.5 (55)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="camilan">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/69/30/35/6930350561e6a3188d664f5af29e81b1.jpg"
+                alt="Kue Pukis"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Kue Pukis</h3>
+                <span class="text-red-600 font-bold">Rp 18.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Kue pukis empuk dengan variasi topping cokelat, keju, atau
+                kacang
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.7 (70)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="camilan">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/61/d7/80/61d78081b71ca573e959bbc6380fdac5.jpg"
+                alt="Martabak Manis"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Martabak Manis</h3>
+                <span class="text-red-600 font-bold">Rp 32.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Martabak manis dengan topping coklat, keju, dan kacang
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.8 (130)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b495ab3c-4b38-4348-9b43-1750fcc8f588.png"
+                alt="Es Cendol"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Es Cendol</h3>
+                <span class="text-red-600 font-bold">Rp 15.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Minuman segar dengan cendol, santan, dan gula merah khas
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.9 (200)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/29/0d/a6/290da6c0a1a23fbb933d8785ba615ccc.jpg"
+                alt="Es Dawet"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Es Dawet</h3>
+                <span class="text-red-600 font-bold">Rp 12.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Minuman khas Jawa dengan dawet, santan, dan gula jawa
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.8 (115)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/22/66/38/226638c49a1f7249904c2e82b8b05645.jpg"
+                alt="Wedang Ronde"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Wedang Ronde</h3>
+                <span class="text-red-600 font-bold">Rp 18.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Minuman hangat berisi bola ketan, kacang, dan kolang-kaling
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.9 (90)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/d7/39/8c/d7398cc4e4d8bc61b6c3cc8e336874ad.jpg"
+                alt="Bandrek"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Bandrek</h3>
+                <span class="text-red-600 font-bold">Rp 16.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Minuman hangat dari jahe dan rempah, cocok untuk musim hujan
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.7 (70)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/2e/47/44/2e4744c56fc2b2ec5c6e68998c6da543.jpg"
+                alt="Es Buah"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Es Buah</h3>
+                <span class="text-red-600 font-bold">Rp 20.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Potongan buah segar dengan sirup dan es serut
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.9 (150)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/91/c0/bd/91c0bdc99bec8f04f19ecad0c609ccec.jpg"
+                alt="Es Teler"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Es Teler</h3>
+                <span class="text-red-600 font-bold">Rp 22.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Avocado, kelapa muda, nangka, dan susu kental manis
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.8 (120)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/78/1e/9d/781e9df1612ff62845fcd9c4b8e3b8e6.jpg"
+                alt="Teh Poci"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Teh Poci</h3>
+                <span class="text-red-600 font-bold">Rp 10.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Teh celup dalam poci tanah liat, disajikan dengan gula batu
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.5 (85)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/bc/ac/84/bcac842d7c1edb9bb5518746e90a469c.jpg"
+                alt="Kopi Jos"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Kopi Joss</h3>
+                <span class="text-red-600 font-bold">Rp 17.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Kopi arang khas Yogyakarta, dengan rasa kopi yang kuat
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.8 (100)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/4f/bf/2c/4fbf2cf00d4df5c833373a289d3b44d6.jpg"
+                alt="Es Kelapa Muda"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Es Kelapa Muda</h3>
+                <span class="text-red-600 font-bold">Rp 18.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Kelapa muda segar dengan es dan sirup
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.9 (180)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/8f/09/dc/8f09dc36be7072a173e78ed47e44daf8.jpg"
+                alt="Es Campur"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Es Campur</h3>
+                <span class="text-red-600 font-bold">Rp 21.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Campuran buah, cincau, dan jeli dengan sirup
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.7 (105)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="minuman">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/5c/9a/90/5c9a905cb128c0a937d1263d46531f82.jpg"
+                alt="Bajigur"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Bajigur</h3>
+                <span class="text-red-600 font-bold">Rp 14.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Minuman hangat dari santan dan gula aren
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.6 (95)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="food-card" data-category="dessert">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/4b/31/db/4b31db6b12a9c62166b92dc9d4f97764.jpg"
+                alt="Klepon"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Klepon</h3>
+                <span class="text-red-600 font-bold">Rp 10.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Bola ketan hijau dengan isian gula merah dan parutan kelapa
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.8 (150)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="dessert">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/80/97/38/809738cdd67f1ad834a3a3b933819846.jpg"
+                alt="Kue Lapis Legit"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Kue Lapis Legit</h3>
+                <span class="text-red-600 font-bold">Rp 30.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Kue lapis dengan rasa rempah, lembut, dan manis
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.9 (110)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="dessert">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/67/ed/b8/67edb86d30ff6e3696fe920dc8b9c44e.jpg"
+                alt="Serabi Kuah"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Serabi Kuah</h3>
+                <span class="text-red-600 font-bold">Rp 17.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Serabi lembut disiram kuah kinca gula merah yang manis
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.7 (95)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="dessert">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/736x/bb/d6/41/bbd641a0b9cb4ef4de8c5a781faab1db.jpg"
+                alt="Puding Roti"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Puding Roti</h3>
+                <span class="text-red-600 font-bold">Rp 15.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Puding lembut dari roti tawar dengan saus vanila
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.6 (80)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="dessert">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/61/18/81/611881b8bc9b886ac14590c95a81bef5.jpg"
+                alt="Es Pisang Ijo"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Es Pisang Ijo</h3>
+                <span class="text-red-600 font-bold">Rp 20.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Pisang dibalut adonan hijau dengan bubur sumsum dan sirup
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.9 (135)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="food-card" data-category="dessert">
+            <div class="overflow-hidden">
+              <img
+                src="https://i.pinimg.com/1200x/83/e6/c0/83e6c07f55377797e3b36aaf92c4a10a.jpg"
+                alt="Onde-Onde"
+                class="food-image"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-gray-800">Onde-onde</h3>
+                <span class="text-red-600 font-bold">Rp 12.000</span>
+              </div>
+              <p class="text-gray-600 mb-4">
+                Kue wijen dengan isian kacang hijau
+              </p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <i class="fas fa-star text-yellow-400 mr-1"></i>
+                  <span class="text-gray-600">4.5 (90)</span>
+                </div>
+                <button
+                  class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium add-btn"
+                >
+                  + Tambah
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-red-600 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">
+          Dapatkan Promo Spesial Hari Ini!
+        </h2>
+        <p class="text-xl mb-8">
+          Diskon 20% untuk pembelian pertama dengan kode: SELERA20
+        </p>
+        <button
+          class="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+        >
+          Pesan Sekarang
+        </button>
+      </div>
+    </section>
+
+    <!-- Section Karyawan -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+          Tim Karyawan Kami
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Karyawan 1 -->
+          <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <img
+              src="https://i.pinimg.com/736x/7b/8c/5d/7b8c5dc348e72ef2e3df483099dfc3d2.jpg"
+              alt="Karyawan 1"
+              class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-red-600"
+            />
+            <h3 class="text-xl font-bold text-gray-800">Andi Pratama</h3>
+            <p class="text-gray-600">Koki Dapur Makanan</p>
+            <div class="mt-4 flex justify-center text-yellow-400 text-lg">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+          </div>
+
+          <!-- Karyawan 2 -->
+          <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <img
+              src="https://i.pinimg.com/736x/bf/aa/6e/bfaa6e03cb9d20f50ab6814b80c4d1ad.jpg"
+              alt="Karyawan 2"
+              class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-red-600"
+            />
+            <h3 class="text-xl font-bold text-gray-800">Cindy Kenny</h3>
+            <p class="text-gray-600">Barista & Minuman Tradisional</p>
+            <div class="mt-4 flex justify-center text-yellow-400 text-lg">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+          </div>
+
+          <!-- Karyawan 3 -->
+          <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <img
+              src="Rayy.jpg"
+              alt="Karyawan 3"
+              class="w-32 h-32 mx-auto rounded-full mb-4 object-cover border-4 border-red-600"
+            />
+            <h3 class="text-xl font-bold text-gray-800">Rayhan</h3>
+            <p class="text-gray-600">Pelayan & Customer Service</p>
+            <div class="mt-4 flex justify-center text-yellow-400 text-lg">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Komentar Rating Pembeli -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+          Komentar Pembeli
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Komentar 1 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/30/34/7b/30347b50393cf429c02ad9251fa03a7d.jpg"
+                alt="Rina"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Rina Rasmawati</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">12 Juni 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Pelayanan dari mas nya sopan dan ramah😘"
+            </p>
+            <!-- Balasan Rayhan -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="Rayy.jpg"
+                  alt="Rayhan"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Rayhan (Pelayan)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih banyak kak 🙏 semoga makanannya sesuai selera ya.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 2 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/f9/6a/91/f96a91fa169638e25839a69dcfab7d25.jpg"
+                alt="Ahmad"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Ahmad Yudi</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">25 Juli 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Sop buntutnya enak banget jir, mas pelayan nya ramah..."
+            </p>
+            <!-- Balasan Rayhan -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="Rayy.jpg"
+                  alt="Rayhan"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Rayhan (Pelayan)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak, gapapa udah moto saya dalam bekerja melayani
+                dengan ramah.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 3 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/3b/3b/dc/3b3bdc5397dd0f30671560c0db967f14.jpg"
+                alt="Anisa"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Anisa</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">8 Mei 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Tempat nya lumayan dan cocok untuk nongkrong..."
+            </p>
+            <!-- Balasan Rayhan -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="Rayy.jpg"
+                  alt="Rayhan"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Rayhan (Pelayan)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak 🙏 ditunggu kedatangannya kembali.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 4 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/7f/5e/28/7f5e2807d463ea29d7e3291a85410db7.jpg"
+                alt="Citra"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Citra Wulan</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">30 Juni 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Es cendolnya segar banget temen aku sampai nambah😭😭"
+            </p>
+            <!-- Balasan Andi -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="https://i.pinimg.com/736x/7b/8c/5d/7b8c5dc348e72ef2e3df483099dfc3d2.jpg"
+                  alt="Andi"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Andi Pratama (Koki)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih banyak kak 🙏 semoga makanannya sesuai selera ya.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 5 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/fc/17/88/fc1788aa5da0b206b626ed23dfe36240.jpg"
+                alt="Radit"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Radit Hermawan</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">15 Juli 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Es Campur nya lumayan dan cocok untuk harga segitu"
+            </p>
+            <!-- Balasan Cindy -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="https://i.pinimg.com/736x/bf/aa/6e/bfaa6e03cb9d20f50ab6814b80c4d1ad.jpg"
+                  alt="Cindy"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Cindy Kenny (Barista)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak 🌸 senang bisa menyajikan minuman untuk Anda.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 6 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/4a/98/fe/4a98fec77018a83798349f48dd863954.jpg"
+                alt="Angga"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Angga Kurniawan</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">27 Mei 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Lumayan rek nasi goreng dengan porsi segitu dengan harganya"
+            </p>
+            <!-- Balasan Rayhan -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="Rayy.jpg"
+                  alt="Rayhan"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Rayhan (Pelayan)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak 🙏 ditunggu kedatangannya kembali.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 7 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/9d/6f/6d/9d6f6dededf9c55cd966730d4d45d364.jpg"
+                alt="Ambariski"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Ambariski</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">21 Agustus 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Ayam bakar taliwangnya mantap banget cik woilah😹😹"
+            </p>
+            <!-- Balasan Rayhan -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="Rayy.jpg"
+                  alt="Rayhan"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Rayhan (Pelayan)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Woilah jir mantep rek jangan lupa datang kembali🤭.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 8 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/b1/dd/6d/b1dd6d63e57b20a3eab9c147c76f53c4.jpg"
+                alt="Andree"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Andree</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">25 Agustus 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "mbak nya manis banget tohapok lah senyumnya bikin salting🤭🤭"
+            </p>
+            <!-- Balasan Cindy -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="https://i.pinimg.com/736x/bf/aa/6e/bfaa6e03cb9d20f50ab6814b80c4d1ad.jpg"
+                  alt="Cindy"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Cindy Kenny (Barista)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak untuk pujian nya🌸 senang bisa membantu🙂.
+              </p>
+            </div>
+
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="Rayy.jpg"
+                  alt="Rayhan"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Rayhan (Pelayan)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">Andre kok gitu sama aku bintang 2😭.</p>
+            </div>
+          </div>
+
+          <!-- Komentar 9 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/3c/44/af/3c44afdc3d98080c49012e2c1a140883.jpg"
+                alt="Hendra"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Hendra</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">20 Juni 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Sate ayam nya enak tapi saran saya bumbu untuk yang pedas di
+              pisah aja mas"
+            </p>
+            <!-- Balasan Rayhan -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="Rayy.jpg"
+                  alt="Rayhan"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Rayhan (Pelayan)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak 🙏 ditunggu kedatangannya kembali.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 10 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/a8/2b/eb/a82beb18547d86b31bb5e794e9996384.jpg"
+                alt="Dewi"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Dewi Lestari</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">11 Juni 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Sayurnya segar dan porsinya pas banget untuk makan siang."
+            </p>
+            <!-- Balasan Andi -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="https://i.pinimg.com/736x/7b/8c/5d/7b8c5dc348e72ef2e3df483099dfc3d2.jpg"
+                  alt="Andi"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Andi Pratama (Koki)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih banyak kak 🙏 semoga makanannya sesuai selera ya.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 11 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/db/92/fc/db92fcc5f54f3fc2fc65390d756af6c8.jpg"
+                alt="Yoga"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Yoga Permana</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">18 Juni 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Minuman jusnya seger banget, bikin ketagihan."
+            </p>
+            <!-- Balasan Cindy -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="https://i.pinimg.com/736x/bf/aa/6e/bfaa6e03cb9d20f50ab6814b80c4d1ad.jpg"
+                  alt="Cindy"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Cindy Kenny (Barista)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak 🌸 senang bisa menyajikan minuman untuk Anda.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 12 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/f9/30/80/f9308093d360957bb6ffcf3b3d019e43.jpg"
+                alt="Sari"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Sari Oktaviani</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">29 Juli 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Suasana tempat makannya nyaman banget buat nongkrong bareng."
+            </p>
+            <!-- Balasan Rayhan -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="Rayy.jpg"
+                  alt="Rayhan"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Rayhan (Pelayan)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak 🙏 ditunggu kedatangannya kembali.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 13 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/1200x/bd/65/86/bd6586153f5abdf6eade3b35c04eb0fd.jpg"
+                alt="Bagas"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Bagas Prasetyo</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">10 Juni 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Nasi padangnya bumbunya pas, sambalnya pedesnya nampol."
+            </p>
+            <!-- Balasan Andi -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="https://i.pinimg.com/736x/7b/8c/5d/7b8c5dc348e72ef2e3df483099dfc3d2.jpg"
+                  alt="Andi"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Andi Pratama (Koki)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih banyak kak 🙏 semoga makanannya sesuai selera ya.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 14 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/08/14/65/081465d1bdb2a9d0e856602ace044ed0.jpg"
+                alt="Putri"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Putri Amelia</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">2 Juli 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Es teh manisnya segar, cocok diminum pas siang panas."
+            </p>
+            <!-- Balasan Cindy -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="https://i.pinimg.com/736x/bf/aa/6e/bfaa6e03cb9d20f50ab6814b80c4d1ad.jpg"
+                  alt="Cindy"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Cindy Kenny (Barista)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak 🌸 senang bisa menyajikan minuman untuk Anda.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 15 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/90/f1/99/90f199ea1a6b3ae17e76dc6778c4c8d4.jpg"
+                alt="Rizky"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Rizky Ramadhan</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">6 Juli 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Agak rame kalau weekend, tapi makanannya worth it sih."
+            </p>
+            <!-- Balasan Rayhan -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="Rayy.jpg"
+                  alt="Rayhan"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Rayhan (Pelayan)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak 🙏 ditunggu kedatangannya kembali.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 16 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/05/dd/f5/05ddf569d55f36574ee1a757859223df.jpg"
+                alt="Lina"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Lina Marlina</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">14 Juli 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Kue tradisionalnya enak banget, manisnya pas dan bikin nagih."
+            </p>
+            <!-- Balasan Andi -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="https://i.pinimg.com/736x/7b/8c/5d/7b8c5dc348e72ef2e3df483099dfc3d2.jpg"
+                  alt="Andi"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Andi Pratama (Koki)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih banyak kak 🙏 semoga makanannya sesuai selera ya.
+              </p>
+            </div>
+          </div>
+
+          <!-- Komentar 17 -->
+          <div class="bg-gray-50 p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <img
+                src="https://i.pinimg.com/736x/a2/1c/66/a21c662583fff30289ca7a5452e2c3b0.jpg"
+                alt="Budi"
+                class="w-12 h-12 rounded-full object-cover border-2 border-red-500 mr-3"
+              />
+              <div>
+                <p class="font-bold text-gray-800">Budi Santoso</p>
+                <div class="text-yellow-400 text-sm">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-xs text-gray-500">21 Juli 2025</p>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">
+              "Porsinya agak kecil menurut saya, tapi rasanya mantap."
+            </p>
+            <!-- Balasan Cindy -->
+            <div
+              class="ml-12 mt-4 bg-white p-4 rounded-lg border border-gray-200"
+            >
+              <div class="flex items-center mb-2">
+                <img
+                  src="https://i.pinimg.com/736x/bf/aa/6e/bfaa6e03cb9d20f50ab6814b80c4d1ad.jpg"
+                  alt="Cindy"
+                  class="w-10 h-10 rounded-full object-cover border-2 border-red-500 mr-2"
+                />
+                <div>
+                  <p class="font-bold text-gray-800">Cindy Kenny (Barista)</p>
+                  <p class="text-xs text-gray-500">Balasan Admin</p>
+                </div>
+              </div>
+              <p class="text-gray-600">
+                Terima kasih kak 🌸 senang bisa menyajikan minuman untuk Anda.
+              </p>
+            </div>
+          </div>
+
+          <!-- (Lanjutkan pola: Komentar 4 → Andi, Komentar 5 → Cindy, Komentar 6 → Rayhan, dst sampai semua komentar terbalas) -->
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-12" id="tentang">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">Selera Lokal</h3>
+            <p class="text-gray-400">
+              Menghadirkan cita rasa autentik kuliner Indonesia dengan kualitas
+              terbaik.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Link Cepat</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Tentang Kami</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Menu</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Promo</a>
+              </li>
+              <li>
+                <a href="" class="text-gray-400 hover:text-white">Kontak</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Kontak</h4>
+            <div class="space-y-2 text-gray-400">
+              <p><i class="fas fa-phone mr-2"></i> +62 812-3456-7890</p>
+              <p><i class="fas fa-envelope mr-2"></i> info@seleralokal.com</p>
+              <p>
+                <i class="fas fa-map-marker-alt mr-2"></i> Jl. Supratman No. 41,
+                Jawa Tengah
+              </p>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Follow Saya</h4>
+            <div class="flex space-x-4">
+              <a
+                href="https://www.facebook.com/ray.menolak.3386"
+                class="text-gray-400 hover:text-white text-xl"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white text-xl"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white text-xl"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@mas.ray95?_t=ZS-8wIC0gQqKrY&_r=1"
+                class="text-gray-400 hover:text-white text-xl"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Pembuat Website</h4>
+          <div class="flex items-center space-x-4">
+            <img
+              src="Rayy.jpg"
+              alt="Rayhan"
+              class="w-16 h-16 rounded-full border-2 border-gray-400"
+            />
+            <div>
+              <p class="text-white font-bold">Rayhan</p>
+              <p class="text-gray-400">Desainer & Pengembang Web</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>© 2025 Rayhan . All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Simple JavaScript for category filtering and add to cart animation
+      document.addEventListener("DOMContentLoaded", function () {
+        const categoryButtons = document.querySelectorAll(".category-btn");
+        const foodCards = document.querySelectorAll(".food-card");
+        const addButtons = document.querySelectorAll(".add-btn");
+
+        // --- Navigasi Mobile ---
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuToggle.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        // --- Filter Kategori ---
+        categoryButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            categoryButtons.forEach((btn) => {
+              btn.classList.remove("bg-red-600", "text-white");
+              btn.classList.add("bg-gray-200", "text-gray-700");
+            });
+
+            this.classList.remove("bg-gray-200", "text-gray-700");
+            this.classList.add("bg-red-600", "text-white");
+
+            const category = this.dataset.category;
+            foodCards.forEach((card) => {
+              if (category === "semua" || !category) {
+                card.style.display = "block";
+              } else if (card.dataset.category === category) {
+                card.style.display = "block";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+
+        document.querySelectorAll("button").forEach((btn) => {
+          if (btn.textContent.trim().includes("Pesan Sekarang")) {
+            btn.addEventListener("click", function () {
+              // isi email di sini
+              const email = "rayhan12012006@gmail.com"; // ganti dengan email kamu
+              const subject = encodeURIComponent(
+                "Pesan Makanan - Selera Lokal"
+              );
+              const body = encodeURIComponent(
+                "Halo Selera Lokal,\n\nSaya ingin memesan makanan. Mohon informasikan menu dan harga terbaru.\n\nTerima kasih!"
+              );
+
+              window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+            });
+          }
+        });
+
+        // --- Animasi Tambah ke Keranjang ---
+        addButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            this.innerHTML = '<i class="fas fa-check"></i> Ditambahkan';
+            this.classList.add("bg-green-600");
+            this.classList.remove("bg-red-600", "hover:bg-red-700");
+
+            setTimeout(() => {
+              this.innerHTML = "+ Tambah";
+              this.classList.remove("bg-green-600");
+              this.classList.add("bg-red-600", "hover:bg-red-700");
+            }, 2000);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
